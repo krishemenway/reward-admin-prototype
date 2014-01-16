@@ -13,9 +13,8 @@
 			rewardType:type,
 			selectRewardType: selectRewardType,
 			toggleEnabled: toggleEnabled,
-			toggleAddExistingActivity: toggleAddExistingActivity,
 			isAddingActivity: false,
-			addAction: addAction,
+			addActivity: addActivity,
 			notAlreadyAdded: notAlreadyAdded,
 			value: "",
 			requiredActivity: []
@@ -29,13 +28,8 @@
 			exports.enabled = !exports.enabled;
 		}
 
-		function toggleAddExistingActivity() {
-			exports.isAddingActivity = !exports.isAddingActivity;
-		}
-
-		function addAction(action) {
-			exports.requiredActivity.push(action);
-			toggleAddExistingActivity();
+		function addActivity(activity) {
+			exports.requiredActivity.push(activity);
 		}
 
 		function notAlreadyAdded(val) {
@@ -62,7 +56,7 @@
 		}
 
 		function loadActions() {
-			$scope.availableActions = [
+			$scope.availableActivities = [
 				{name: "Drink 10 cups of water", category: "Food", id: 7},
 				{name: "Eat 100 Peanut Butter M&Ms", category: "Food", id: 6},
 				{name: "Wrestle with a bear with boxing gloves", category: "What?", id: 5},
@@ -71,19 +65,22 @@
 				{name: "Create a turing machine", category: "Hobbies", id: 2},
 				{name: "Sleep with two dinosaurs at once", category: "What?", id: 1}
 			];
+
+			$scope.categories = ["What?","Food","Sports","Hobbies"];
 		}
 
 		function setupReward() {
 			$scope.reward = new Reward('Reward Description Name', $scope.rewardTypes[0]);
 		}
 
-		function editAction(action) {
-			$scope.selectedAction = action;
+		function editActivity(activity) {
+			
 		}
 
-		function showEditAction() {
-			return $scope.selectedAction !== undefined;
-		}
+		$scope.addActivity = function(activity) {
+			$scope.reward.addActivity(activity);
+			$scope.typeOfActivityToAdd = '';
+		};
 
 		loadRewardTypes();
 		loadActions();

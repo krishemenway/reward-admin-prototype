@@ -41,20 +41,30 @@
 				<ul class="requiredActivity">
 					<li ng-repeat="action in reward.requiredActivity">
 						<span class="actionName ">{{action.name}}</span>
-						<button class="editActionButton" ng-click="editAction(action)">Edit</button>
+						<button class="editActivitiesButton" ng-click="editActivity(action)">Edit</button>
 					</li>
 				</ul>
 
 				<div>
-					<button ng-click="reward.toggleAddExistingActivity()">Add Existing Activity</button>
-					<button>Add External Activity</button>
-					<button>Add Self-Reported Activity</button>
+					<button ng-click="typeOfActivityToAdd = 'addExistingActivity'">Add Existing Activity</button>
+					<button ng-click="typeOfActivityToAdd = 'addExternalActivity'">Add External Activity</button>
+					<button ng-click="typeOfActivityToAdd = 'addSelfReportedActivity'">Add Self-Reported Activity</button>
 
-					<ul class="actionsAvailableToAdd row" ng-show="reward.isAddingActivity">
-						<li class="col-md-6" ng-repeat="action in availableActions | filter:reward.notAlreadyAdded">
-							<button ng-click="reward.addAction(action)">{{action.name}}</button>
-						</li>
-					</ul>
+					<div ng-switch on="typeOfActivityToAdd">
+						<div ng-switch-when="addExistingActivity">
+							<ul class="activitiesAvailableToAdd row">
+								<li class="col-md-6" ng-repeat="activity in availableActivities | filter:reward.notAlreadyAdded">
+									<button ng-click="addActivity(activity)">{{activity.name}}</button>
+								</li>
+							</ul>
+						</div>
+						<div ng-switch-when="addSelfReportedActivity">
+							Self Reported
+						</div>
+						<div ng-switch-when="addExternalActivity">
+							External
+						</div>
+					</div>
 				</div>
 
 

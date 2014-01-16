@@ -76,17 +76,17 @@
 	line-height: 44px;
 }
 
-.editActionButton {
+.editActivitiesButton {
 	float: right;
 	margin: 5px;
 }
 
-.actionsAvailableToAdd {
+.activitiesAvailableToAdd {
 	list-style: none;
 	padding: 0;
 }
 
-.actionsAvailableToAdd button {
+.activitiesAvailableToAdd button {
 	width: 100%;
 }
 
