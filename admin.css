@@ -1,0 +1,95 @@
+
+.reward-admin {
+	width: 800px;
+	margin: 0 auto;
+	min-height: 100px;
+}
+
+.rewardName {
+	width: 100%;
+	border: 0;
+	font-size: 24px;
+	text-align: center;
+}
+
+.editRewardsName {
+	width: 100%;
+}
+
+.reward-admin__rewardNameDisplay {
+	margin: 0;
+	padding: 0;
+}
+
+.side-bar {
+	text-align: center;
+}
+
+.side-bar > * {
+	display: block;
+	margin: 10px auto;
+}
+
+.enableDisable {
+	width: 100%;
+}
+
+.pickRewardType {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.pickRewardType > * {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	width: 140px;
+	margin: 0 4px;
+}
+
+.selectType {
+	background: transparent;
+	border: 0;
+	padding: 0;
+}
+
+.selectType > * {
+	display: block;
+}
+
+.rewardValue {
+	width: 50%;
+}
+
+.requiredActions {
+	list-style: none;
+	padding: 0;
+}
+
+.requiredActions > * {
+	width: 100%;
+	line-height: 30px;
+	clear: both;
+}
+
+.actionName {
+	line-height: 44px;
+}
+
+.editActionButton {
+	float: right;
+	margin: 5px;
+}
+
+.actionsAvailableToAdd {
+	list-style: none;
+	padding: 0;
+}
+
+.actionsAvailableToAdd button {
+	width: 100%;
+}
+
+.rewardLabel {
+	font-weight: bold;
+}

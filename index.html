@@ -1,0 +1,83 @@
+<html>
+<head>
+	<link rel="stylesheet" href="bootstrap.css" />
+	<link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+	<div class="reward-admin" ng-app="rewardsAdmin" ng-controller="reward">
+		<header class="reward-admin__header row">
+			<button class="back col-md-1">Back</button>
+
+			<div class="reward-admin__rewardNameDisplay col-md-10">
+				<div class="rewardName">{{reward.name}}</div>
+			</div>
+
+			<button class="edit col-md-1">Save</button>
+		</header>
+
+		<div class="reward-admin__body row">
+			<div class="col-md-9">
+
+				<h3>What is the description of the reward?</h3>
+				<input class="editRewardsName" type="text" ng-model="reward.name" />
+
+				<h3>What kind of reward is it?</h3>
+				<ul class="pickRewardType">
+					<li ng-repeat="rewardType in rewardTypes">
+						<button class="selectType" type="button" ng-click="reward.selectRewardType(rewardType)">
+							<img class="rewardIcon" ng-src="{{rewardType.image}}">
+							{{rewardType.name}}
+						</button>
+					</li>
+				</ul>
+
+				<div ng-show="reward.rewardType.isMoney">
+					<h3>How much?</h3>
+					<input type="number" value="20" class="rewardValue" ng-model="reward.value" min="0" max="10000" required />
+				</div>
+
+				<h3>What activities are required to earn this reward?</h3>
+				<ul class="requiredActivity">
+					<li ng-repeat="action in reward.requiredActivity">
+						<span class="actionName ">{{action.name}}</span>
+						<button class="editActionButton" ng-click="editAction(action)">Edit</button>
+					</li>
+				</ul>
+
+				<div>
+					<button ng-click="reward.toggleAddExistingActivity()">Add Existing Activity</button>
+					<button>Add External Activity</button>
+					<button>Add Self-Reported Activity</button>
+
+					<ul class="actionsAvailableToAdd row" ng-show="reward.isAddingActivity">
+						<li class="col-md-6" ng-repeat="action in availableActions | filter:reward.notAlreadyAdded">
+							<button ng-click="reward.addAction(action)">{{action.name}}</button>
+						</li>
+					</ul>
+				</div>
+
+
+			</div>
+
+			<aside class="side-bar col-md-3">
+				<div>
+					<img class="rewardIcon" ng-src="{{reward.rewardType.image}}">
+					<span class="rewardLabel">Reward Type:</span> <br/>{{reward.rewardType.name}} <br/>
+					<div ng-show="reward.rewardType.isMoney">
+						<span class="rewardLabel">Worth:</span> {{reward.value | currency}}
+					</div>
+				</div>
+
+				<button type="button" class="enableDisable" ng-click="reward.toggleEnabled()">
+					{{reward.enabled ? 'Disable' : 'Enable'}}
+				</button>
+			</aside>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="admin.js"></script>
+</body>
+</html>
