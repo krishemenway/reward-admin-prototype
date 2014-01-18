@@ -1,8 +1,8 @@
 <header class="reward-admin__header row">
-	<button class="back col-md-1">Back</button>
+	<button class="back col-md-1" ng-click="back()">Back</button>
 
 	<div class="reward-admin__rewardNameDisplay col-md-10">
-		{{title}}
+		<span class="rewardName">{{reward.name}}</span>
 	</div>
 
 	<button class="edit col-md-1" ng-click="save()">Save</button>

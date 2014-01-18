@@ -1,7 +1,7 @@
 (function(rewardsAdmin, angular) {
 	'use strict';
 
-	rewardsAdmin.factory('RewardFactory', function() {
+	rewardsAdmin.factory('RewardFactory', ['RewardTypeService', function(RewardTypeService) {
 		return function Reward(initialProps) {
 
 			var defaultProps = {
@@ -13,6 +13,10 @@
 			};
 
 			var exports = angular.extend(defaultProps, initialProps);
+
+			if(exports.rewardType !== null) {
+				exports.rewardType = RewardTypeService.getById(exports.rewardType);
+			}
 
 			exports.serialize = function() {
 				return {
@@ -42,6 +46,6 @@
 
 			return exports;
 		};
-	});
+	}]);
 
 })(window.rewardsAdmin, window.angular);

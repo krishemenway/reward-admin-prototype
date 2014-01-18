@@ -1,7 +1,7 @@
 (function(rewardsControllers) {
 	'use strict';
 
-	rewardsControllers.controller('RewardController', ['$scope', '$routeParams', 'RewardService', 'RewardTypeService', function ($scope, $routeParams, RewardService, RewardTypeService) {
+	rewardsControllers.controller('RewardController', ['$scope', '$routeParams', 'RewardService', 'RewardTypeService', '$location', function ($scope, $routeParams, RewardService, RewardTypeService, $location) {
 		var rewardId = $routeParams.rewardId;
 
 		function loadActions() {
@@ -29,6 +29,10 @@
 
 		$scope.save = function() {
 			RewardService.saveReward($scope.reward);
+		};
+
+		$scope.back = function() {
+			$location.path("/rewards");
 		};
 
 		$scope.rewardTypes = RewardTypeService.getAll();
