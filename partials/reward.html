@@ -1,0 +1,71 @@
+<header class="reward-admin__header row">
+	<button class="back col-md-1">Back</button>
+
+	<div class="reward-admin__rewardNameDisplay col-md-10">
+		{{title}}
+	</div>
+
+	<button class="edit col-md-1" ng-click="save()">Save</button>
+</header>
+
+<div class="reward-admin__body row" >
+
+	<div class="col-md-9">
+
+		<h3>What is the description of the reward?</h3>
+		<input class="editRewardsName" type="text" ng-model="reward.name" />
+
+		<h3>What kind of reward is it?</h3>
+		<select ng-options="rewardType.name for rewardType in rewardTypes" ng-model="reward.rewardType"></select>
+
+		<div ng-show="reward.rewardType.isMoney">
+			<h3>How much?</h3>
+			<input type="number" value="20" class="rewardValue" ng-model="reward.rewardMoneyValue" min="0" max="10000" required />
+		</div>
+
+		<h3>What activities are required to earn this reward?</h3>
+		<ul class="requiredActivity">
+			<li ng-repeat="action in reward.requiredActivity">
+				<span class="actionName ">{{action.name}}</span>
+				<button class="editActivitiesButton" ng-click="editActivity(action)">Edit</button>
+			</li>
+		</ul>
+
+		<div>
+			<button ng-click="typeOfActivityToAdd = 'addExistingActivity'">Add Existing Activity</button>
+			<button ng-click="typeOfActivityToAdd = 'addExternalActivity'">Add External Activity</button>
+			<button ng-click="typeOfActivityToAdd = 'addSelfReportedActivity'">Add Self-Reported Activity</button>
+
+			<div ng-switch on="typeOfActivityToAdd">
+				<div ng-switch-when="addExistingActivity">
+					<ul class="activitiesAvailableToAdd row">
+						<li class="col-md-6" ng-repeat="activity in availableActivities | filter:reward.notAlreadyAdded">
+							<button ng-click="addActivity(activity)">{{activity.name}}</button>
+						</li>
+					</ul>
+				</div>
+				<div ng-switch-when="addSelfReportedActivity">
+					Self Reported
+				</div>
+				<div ng-switch-when="addExternalActivity">
+					External
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<aside class="side-bar col-md-3">
+		<div>
+			<img class="rewardIcon" ng-src="{{reward.rewardType.image}}">
+			<span class="rewardLabel">Reward Type:</span> <br/>{{reward.rewardType.name}} <br/>
+			<div ng-show="reward.rewardType.isMoney">
+				<span class="rewardLabel">Worth:</span> {{reward.rewardMoneyValue | currency}}
+			</div>
+		</div>
+
+		<button type="button" class="enableDisable" ng-click="reward.toggleEnabled()">
+			{{reward.enabled ? 'Disable' : 'Enable'}}
+		</button>
+	</aside>
+</div>
