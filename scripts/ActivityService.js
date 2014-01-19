@@ -1,4 +1,4 @@
-(function(rewardsAdmin, angular) {
+(function(rewardsAdmin) {
 	'use strict';
 
 	rewardsAdmin.service('ActivityService', ['$filter', function($filter) {
@@ -10,6 +10,12 @@
 			{name: 'Fight a moose', category: 'Sports', id: 3},
 			{name: 'Create a turing machine', category: 'Hobbies', id: 2},
 			{name: 'Sleep with two dinosaurs at once', category: 'What?', id: 1}
+		],
+		categories = [
+			'Food',
+			'Hobbies',
+			'Sports',
+			'What?'
 		];
 
 		this.findById = function(activityId) {
@@ -19,6 +25,10 @@
 		this.findAll = function() {
 			return activities; // clone this too
 		};
+
+		this.findAllCategories = function() {
+			return categories; // clone
+		};
 	}]);
 
-})(window.rewardsAdmin, window.angular)
+})(window.rewardsAdmin);

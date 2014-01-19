@@ -25,17 +25,24 @@
 					activities.push(ActivityService.findById(activityId));
 				});
 
-
+				exports.requiredActivities = activities;
 			}
 
 			exports.serialize = function() {
-				return {
+				var props = {
 					id: exports.id,
 					name: exports.name,
 					moneyValue: exports.moneyValue,
 					enabled: exports.enabled,
-					rewardType: exports.rewardType && exports.rewardType.id
+					rewardType: exports.rewardType && exports.rewardType.id,
+					requiredActivities: []
 				};
+
+				angular.forEach(exports.requiredActivities, function(activity) {
+					props.requiredActivities.push(activity.id);
+				});
+
+				return props;
 			}
 
 			exports.selectRewardType = function(newType) {

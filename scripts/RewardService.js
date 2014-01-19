@@ -11,11 +11,11 @@
 			if(nextId === null) {
 				localStorage.setItem(nextRewardIdKey, 0);
 				return this.nextRewardId();
-			} else {
-				nextId = parseInt(nextId)
-				localStorage.setItem(nextRewardIdKey, nextId + 1);
-				return nextId;
 			}
+
+			nextId = parseInt(nextId);
+			localStorage.setItem(nextRewardIdKey, nextId + 1);
+			return nextId;
 		};
 
 		this.keyForReward = function(rewardId) {
