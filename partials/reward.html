@@ -31,12 +31,14 @@
 			</li>
 		</ul>
 
-		<div>
-			<button ng-click="typeOfActivityToAdd = 'addExistingActivity'">Add Existing Activity</button>
-			<button ng-click="typeOfActivityToAdd = 'addExternalActivity'">Add External Activity</button>
-			<button ng-click="typeOfActivityToAdd = 'addSelfReportedActivity'">Add Self-Reported Activity</button>
+		<hr />
 
-			<div ng-switch on="typeOfActivityToAdd">
+		<div class="addActivitySection" ng-class="typeOfActivityToAdd">
+			<button class="addExistingActivityButton" ng-click="typeOfActivityToAdd = 'addExistingActivity'">Add Existing Activity</button>
+			<button class="addExternalActivityButton" ng-click="typeOfActivityToAdd = 'addExternalActivity'">Add External Activity</button>
+			<button class="addSelfReportedActivityButton" ng-click="typeOfActivityToAdd = 'addSelfReportedActivity'">Add Self-Reported Activity</button>
+
+			<div class="addActivityPanel" ng-switch on="typeOfActivityToAdd" ng-hide="typeOfActivityToAdd === '' || typeOfActivityToAdd === undefined">
 				<div ng-switch-when="addExistingActivity">
 					<ul class="activitiesAvailableToAdd row">
 						<li class="col-md-6" ng-repeat="activity in existingActivities | filter:reward.hasRequiredActivity">

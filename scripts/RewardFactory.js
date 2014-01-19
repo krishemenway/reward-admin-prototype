@@ -13,7 +13,7 @@
 			};
 
 			var exports = angular.extend(defaultProps, initialProps);
-
+			
 			if(exports.rewardType !== null) {
 				exports.rewardType = RewardTypeService.findById(exports.rewardType);
 			}

@@ -99,3 +99,26 @@ ul {
 .rewardLabel {
 	font-weight: bold;
 }
+
+.addActivitySection {
+	text-align: center;
+}
+
+.addActivityPanel {
+	padding: 20px 10px;
+}
+
+.addExistingActivityButton,
+.addExternalActivityButton,
+.addSelfReportedActivityButton {
+	background: transparent;
+	border: 0;
+	padding: 8px 12px;
+}
+
+.addExistingActivity .addExistingActivityButton,
+.addExternalActivity .addExternalActivityButton,
+.addSelfReportedActivity .addSelfReportedActivityButton,
+.addActivityPanel {
+	background-color: #e8e8e8;
+}
