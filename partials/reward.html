@@ -1,11 +1,11 @@
 <header class="reward-admin__header row">
-	<button class="back col-md-1" ng-click="back()">Back</button>
-
-	<div class="reward-admin__rewardNameDisplay col-md-10">
+	<div class="reward-admin__rewardNameDisplay col-md-offset-1 col-md-10">
 		<span class="rewardName">{{reward.name}}</span>
 	</div>
 
-	<button class="edit col-md-1" ng-click="save()">Save</button>
+	<div class="col-md-1">
+		<button class="edit" ng-click="save()">Save</button>
+	</div>
 </header>
 
 <div class="reward-admin__body row" >
@@ -20,12 +20,12 @@
 
 		<div ng-show="reward.rewardType.isMoney">
 			<h3>How much?</h3>
-			<input type="number" value="20" class="rewardValue" ng-model="reward.rewardMoneyValue" min="0" max="10000" required />
+			<input type="number" value="20" class="rewardValue" ng-model="reward.moneyValue" min="0" max="10000" required />
 		</div>
 
 		<h3>What activities are required to earn this reward?</h3>
-		<ul class="requiredActivity">
-			<li ng-repeat="action in reward.requiredActivity">
+		<ul class="requiredActivities">
+			<li ng-repeat="action in reward.requiredActivities">
 				<span class="actionName ">{{action.name}}</span>
 				<button class="editActivitiesButton" ng-click="editActivity(action)">Edit</button>
 			</li>
@@ -39,7 +39,7 @@
 			<div ng-switch on="typeOfActivityToAdd">
 				<div ng-switch-when="addExistingActivity">
 					<ul class="activitiesAvailableToAdd row">
-						<li class="col-md-6" ng-repeat="activity in availableActivities | filter:reward.notAlreadyAdded">
+						<li class="col-md-6" ng-repeat="activity in existingActivities | filter:reward.hasRequiredActivity">
 							<button ng-click="addActivity(activity)">{{activity.name}}</button>
 						</li>
 					</ul>
@@ -60,7 +60,7 @@
 			<img class="rewardIcon" ng-src="{{reward.rewardType.image}}">
 			<span class="rewardLabel">Reward Type:</span> <br/>{{reward.rewardType.name}} <br/>
 			<div ng-show="reward.rewardType.isMoney">
-				<span class="rewardLabel">Worth:</span> {{reward.rewardMoneyValue | currency}}
+				<span class="rewardLabel">Worth:</span> {{reward.moneyValue | currency}}
 			</div>
 		</div>
 

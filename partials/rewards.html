@@ -1,7 +1,10 @@
 
-<ul>
+<ul class="programRewards">
 	<li ng-repeat="reward in program.rewards">
-		<a href="#/rewards/{{reward.id}}">{{reward.name}}</a>
+		<a class="selectReward" href="#/rewards/{{reward.id}}">
+			<img ng-src="{{reward.rewardType.image}}" />
+			{{reward.name}}
+		</a>
 	</li>
 </ul>
 

@@ -1,7 +1,7 @@
 (function(rewardsAdmin, angular) {
 	'use strict';
 
-	rewardsAdmin.factory('RewardFactory', ['RewardTypeService', function(RewardTypeService) {
+	rewardsAdmin.factory('RewardFactory', ['RewardTypeService', 'ActivityService', function(RewardTypeService, ActivityService) {
 		return function Reward(initialProps) {
 
 			var defaultProps = {
@@ -15,7 +15,17 @@
 			var exports = angular.extend(defaultProps, initialProps);
 
 			if(exports.rewardType !== null) {
-				exports.rewardType = RewardTypeService.getById(exports.rewardType);
+				exports.rewardType = RewardTypeService.findById(exports.rewardType);
+			}
+
+			if(exports.requiredActivities !== null) {
+				var activities = [];
+
+				angular.forEach(exports.requiredActivities, function(activityId) {
+					activities.push(ActivityService.findById(activityId));
+				});
+
+
 			}
 
 			exports.serialize = function() {

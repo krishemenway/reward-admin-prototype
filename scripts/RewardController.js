@@ -1,20 +1,10 @@
 (function(rewardsControllers) {
 	'use strict';
 
-	rewardsControllers.controller('RewardController', ['$scope', '$routeParams', 'RewardService', 'RewardTypeService', '$location', function ($scope, $routeParams, RewardService, RewardTypeService, $location) {
+	rewardsControllers.controller('RewardController',['$scope','$routeParams','RewardService','RewardTypeService','$location','ActivityService',function ($scope, $routeParams, RewardService, RewardTypeService, $location, ActivityService) {
 		var rewardId = $routeParams.rewardId;
 
 		function loadActions() {
-			$scope.availableActivities = [
-				{name: 'Drink 10 cups of water', category: 'Food', id: 7},
-				{name: 'Eat 100 Peanut Butter M&Ms', category: 'Food', id: 6},
-				{name: 'Wrestle with a bear with boxing gloves', category: 'What?', id: 5},
-				{name: 'Go bowling with Stephen', category: 'Sports', id: 4},
-				{name: 'Fight a moose', category: 'Sports', id: 3},
-				{name: 'Create a turing machine', category: 'Hobbies', id: 2},
-				{name: 'Sleep with two dinosaurs at once', category: 'What?', id: 1}
-			];
-
 			$scope.categories = ['What?','Food','Sports','Hobbies'];
 		}
 
@@ -35,7 +25,8 @@
 			$location.path("/rewards");
 		};
 
-		$scope.rewardTypes = RewardTypeService.getAll();
+		$scope.existingActivities = ActivityService.findAll();
+		$scope.rewardTypes = RewardTypeService.findAll();
 
 		loadActions();
 		loadReward();

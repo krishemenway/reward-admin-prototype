@@ -1,4 +1,20 @@
 
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.selectReward {
+	margin: 5px 0;
+	display: block;
+}
+
+.selectReward:hover {
+	background-color: #e8e8e8;
+	text-decoration: none;
+}
+
 .reward-admin {
 	width: 800px;
 	margin: 0 auto;
@@ -36,7 +52,6 @@
 }
 
 .pickRewardType {
-	list-style: none;
 	padding: 0;
 	margin: 0;
 }
@@ -62,12 +77,7 @@
 	width: 50%;
 }
 
-.requiredActions {
-	list-style: none;
-	padding: 0;
-}
-
-.requiredActions > * {
+.requiredActivities > * {
 	width: 100%;
 	line-height: 30px;
 	clear: both;
@@ -80,11 +90,6 @@
 .editActivitiesButton {
 	float: right;
 	margin: 5px;
-}
-
-.activitiesAvailableToAdd {
-	list-style: none;
-	padding: 0;
 }
 
 .activitiesAvailableToAdd button {
