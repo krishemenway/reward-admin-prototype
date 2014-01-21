@@ -5,18 +5,16 @@
 		var programLocationKey = 'program';
 
 		this.newProgram = function() {
-			var program =  new Program({});
-			this.saveProgram(program);
-			return program;
+			return this.saveProgram(this.createProgram({}));
 		};
 
 		this.createProgram = function(initialProps) {
-			var program = new Program(initialProps);
-			return program;
+			return new Program(initialProps);
 		};
 
 		this.saveProgram = function(program) {
 			localStorage.setItem(programLocationKey, JSON.stringify(program.serialize()));
+			return program;
 		};
 
 		this.findProgram = function() {

@@ -9,7 +9,7 @@
 	window.rewardsAdmin.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 		when('/rewards', {
-			templateUrl: 'partials/rewards.html',
+			templateUrl: 'partials/program.html',
 			controller: 'ProgramController'
 		}).
 		when('/rewards/:rewardId', {

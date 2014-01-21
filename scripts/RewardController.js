@@ -6,11 +6,19 @@
 
 		$scope.addActivity = function(activity) {
 			$scope.reward.addActivity(activity);
+			$scope.save();
 			$scope.typeOfActivityToAdd = '';
 		};
 
 		$scope.save = function() {
 			RewardService.saveReward($scope.reward);
+			$scope.showSavedMessage = true;
+
+			window.setTimeout(function() {
+				$scope.$apply(function () {
+					$scope.showSavedMessage = false;
+				});
+			}, 2000);
 		};
 
 		$scope.existingActivities = ActivityService.findAll();

@@ -1,0 +1,36 @@
+<p class="alert alert-success" ng-show="showSavedMessage">
+	Saved Successfully!
+</p>
+
+<header class="reward-admin__header row">
+	<div class="reward-admin__rewardTitleContainer col-md-offset-1 col-md-10">
+		<span class="rewardTitle">{{program.name}}</span>
+	</div>
+
+	<div class="col-md-2 header__actions">
+		<button title="save" ng-click="saveProgram()"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+	</div>
+</header>
+
+<h3>What is the name of the program?</h3>
+<input type="text" ng-model="program.name" />
+
+<h3>Is this points based or action based?</h3>
+<div class="btn-group">
+  <button type="button" class="btn btn-default">Points</button>
+  <button type="button" class="btn btn-default">Actions</button>
+</div>
+
+<h3>What rewards should be in this years program?</h3>
+<ul class="programRewards">
+	<li class="row" ng-repeat="reward in program.rewards">
+		<div class="col-md-1"><input type="checkbox" /></div>
+		<div class="col-md-8 programRewards__Name">{{reward.name}}</div>
+		<div class="col-md-3 programRewards__Actions">
+			<a title="edit reward" href="#/rewards/{{reward.id}}"><i class="glyphicon glyphicon-edit"></i></a>
+			<a title="delete reward" href="javascript:void(0)" ng-click="deleteReward(reward)"><i class="glyphicon glyphicon-remove"></i></a>
+		</div>
+	</li>
+</ul>
+
+<button class="createNewReward col-md-6" ng-click="newReward()">New Reward</button

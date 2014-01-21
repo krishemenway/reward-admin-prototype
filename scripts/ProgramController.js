@@ -6,9 +6,25 @@
 
 		$scope.newReward = function() {
 			var reward = $scope.program.newReward();
-			ProgramService.saveProgram($scope.program);
+			$scope.saveProgram();
 			RewardService.saveReward(reward);
 			$location.path("/rewards/" + reward.id);
+		};
+
+		$scope.deleteReward = function(reward) {
+			$scope.program.deleteReward(reward);
+			$scope.saveProgram();
+		};
+
+		$scope.saveProgram = function() {
+			ProgramService.saveProgram($scope.program);
+			$scope.showSavedMessage = true;
+
+			window.setTimeout(function() {
+				$scope.$apply(function () {
+					$scope.showSavedMessage = false;
+				});
+			}, 2000);
 		};
 	}]);
 

@@ -1,10 +1,14 @@
+<p class="alert alert-success" ng-show="showSavedMessage">
+	Saved Successfully!
+</p>
+
 <header class="reward-admin__header row">
-	<div class="reward-admin__rewardNameDisplay col-md-offset-1 col-md-10">
-		<span class="rewardName">{{reward.name}}</span>
+	<div class="reward-admin__rewardTitleContainer col-md-10">
+		<span class="rewardTitle">{{reward.name}}</span>
 	</div>
 
-	<div class="col-md-1">
-		<button class="edit" ng-click="save()">Save</button>
+	<div class="col-md-2 header__actions">
+		<button title="Save" ng-click="save()"><i class="glyphicon glyphicon-floppy-disk"></i></button>
 	</div>
 </header>
 
@@ -20,7 +24,7 @@
 
 		<div ng-show="reward.rewardType.isMoney">
 			<h3>How much?</h3>
-			<input type="number" value="20" class="rewardValue" ng-model="reward.moneyValue" min="0" max="10000" required />
+			<label for="rewardValue" class="rewardValueDollar">$</label><input type="number" value="20" id="rewardValue" class="rewardValue" ng-model="reward.moneyValue" min="0" max="10000" required />
 		</div>
 
 		<h3>What activities are required to earn this reward?</h3>

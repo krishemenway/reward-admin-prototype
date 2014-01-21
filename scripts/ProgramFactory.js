@@ -6,6 +6,7 @@
 
 		return function Program(initialProps) {
 			var exports = {
+				name: initialProps.name,
 				rewards: []
 			};
 
@@ -19,6 +20,14 @@
 				return reward;
 			};
 
+			exports.deleteReward = function(reward) {
+				var rewardIndex = exports.rewards.indexOf(reward);
+
+				if (rewardIndex > -1) {
+				    exports.rewards.splice(rewardIndex, 1);
+				}
+			};
+
 			exports.serialize = function() {
 				var rewardIds = [];
 
@@ -27,7 +36,8 @@
 				});
 
 				return {
-					rewardIds: rewardIds
+					rewardIds: rewardIds,
+					name: exports.name
 				};
 			};
 
