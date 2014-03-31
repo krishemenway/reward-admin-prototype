@@ -8,15 +8,14 @@
 				name: 'Default Reward Description',
 				moneyValue: '',
 				enabled: false,
-				rewardType: undefined,
+				rewardType: null,
+				programId: null,
+				requiredRewards: [],
 				requiredActivities: []
 			};
 
 			var exports = angular.extend(defaultProps, initialProps);
-			
-			if(exports.rewardType !== null) {
-				exports.rewardType = RewardTypeService.findById(exports.rewardType);
-			}
+			exports.rewardType = RewardTypeService.findById(exports.rewardType || 3);
 
 			if(exports.requiredActivities !== null) {
 				var activities = [];
@@ -32,14 +31,20 @@
 				var props = {
 					id: exports.id,
 					name: exports.name,
+					programId: exports.programId,
 					moneyValue: exports.moneyValue,
 					enabled: exports.enabled,
 					rewardType: exports.rewardType && exports.rewardType.id,
-					requiredActivities: []
+					requiredActivities: [],
+					requiredRewards: []
 				};
 
 				angular.forEach(exports.requiredActivities, function(activity) {
 					props.requiredActivities.push(activity.id);
+				});
+
+				angular.forEach(exports.requiredRewards, function(reward) {
+					props.requiredRewards.push(reward.id);
 				});
 
 				return props;
@@ -55,6 +60,14 @@
 
 			exports.addActivity = function(activity) {
 				exports.requiredActivities.push(activity);
+			}
+
+			exports.addReward = function(reward) {
+				exports.requiredRewards.push(reward);
+			}
+
+			exports.hasRequiredReward = function(reward) {
+				return exports.requiredRewards.indexOf(reward) === -1;
 			}
 
 			exports.hasRequiredActivity = function(val) {

@@ -1,8 +1,10 @@
 (function(rewardsControllers) {
 	'use strict';
 
-	rewardsControllers.controller('ProgramController', ['$scope', '$location', 'ProgramService', 'RewardService', function($scope, $location, ProgramService, RewardService) {
+	rewardsControllers.controller('ProgramController', ['$scope', '$location', 'ProgramService', 'RewardService', 'ActivityService', function($scope, $location, ProgramService, RewardService, ActivityService) {
 		$scope.program = ProgramService.findOrCreateProgram();
+
+		$scope.allActivities = ActivityService.findAll();
 
 		$scope.newReward = function() {
 			var reward = $scope.program.newReward();

@@ -152,3 +152,9 @@ ul {
 .programRewards > li {
 	margin: 8px 0;
 }
+
+.activity__points {
+	width: 50px;
+	line-height: 1.5em;
+}
+

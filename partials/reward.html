@@ -2,6 +2,8 @@
 	Saved Successfully!
 </p>
 
+<a href=""></a>
+
 <header class="reward-admin__header row">
 	<div class="reward-admin__rewardTitleContainer col-md-10">
 		<span class="rewardTitle">{{reward.name}}</span>
@@ -27,6 +29,20 @@
 			<label for="rewardValue" class="rewardValueDollar">$</label><input type="number" value="20" id="rewardValue" class="rewardValue" ng-model="reward.moneyValue" min="0" max="10000" required />
 		</div>
 
+		<h3>What rewards are required to receive this reward?</h3>
+		<ul class="requiredRewards">
+			<li ng-repeat="reward in reward.requiredRewards">
+				<span class="rewardName ">{{reward.name}}</span>
+				<button class="editRewardButton" ng-click="editReward(reward)">Edit</button>
+			</li>
+		</ul>
+
+		<ul class="rewardsToAdd row">
+			<li class="col-md-6" ng-repeat="reward in program.rewards | filter:reward.hasRequiredReward">
+				<button ng-click="addReward(reward)">{{reward.name}}</button>
+			</li>
+		</ul>
+
 		<h3>What activities are required to earn this reward?</h3>
 		<ul class="requiredActivities">
 			<li ng-repeat="action in reward.requiredActivities">
@@ -47,7 +63,7 @@
 			<div class="addActivityPanel" ng-switch on="typeOfActivityToAdd" ng-hide="typeOfActivityToAdd === '' || typeOfActivityToAdd === undefined">
 				<div ng-switch-when="addExistingActivity">
 					<ul class="activitiesAvailableToAdd row">
-						<li class="col-md-6" ng-repeat="activity in existingActivities | filter:reward.hasRequiredActivity">
+						<li class="col-md-6" ng-repeat="activity in activities | filter:reward.hasRequiredActivity">
 							<button ng-click="addActivity(activity)">{{activity.name}}</button>
 						</li>
 					</ul>

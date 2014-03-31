@@ -17,11 +17,16 @@
 
 <h3>Is this points based or action based?</h3>
 <div class="btn-group">
-  <button type="button" class="btn btn-default">Points</button>
-  <button type="button" class="btn btn-default">Actions</button>
+	<button type="button" class="btn btn-default" ng-model="program.isPointsBased" btn-radio="true">Points</button>
+	<button type="button" class="btn btn-default" ng-model="program.isPointsBased" btn-radio="false">Actions</button>
 </div>
 
-<h3>What rewards should be in this years program?</h3>
+<div ng-if="program.isPointsBased">
+	<h3>What should the points currency name be?</h3>
+	<input type="text" ng-model="program.currencyName" />
+</div>
+
+<h3>What rewards should be in this program?</h3>
 <ul class="programRewards">
 	<li class="row" ng-repeat="reward in program.rewards">
 		<div class="col-md-1"><input type="checkbox" /></div>
@@ -33,4 +38,42 @@
 	</li>
 </ul>
 
-<button class="createNewReward col-md-6" ng-click="newReward()">New Reward</button
+<button class="createNewReward" ng-click="newReward()">New Reward</button>
+
+<div ng-if="program.isPointsBased">
+	<h3>Which activities should earn the member {{program.currencyName}}?</h3>
+	<ul class="requiredActivities">
+		<li ng-repeat="action in program.activities">
+			<input class="activity__points" type="text" value="123" />
+
+			<span class="actionName ">{{action.name}}</span>
+			<button class="editActivitiesButton" ng-click="program.editActivity(action)">Edit</button>
+		</li>
+	</ul>
+
+	<div ng-show="program.activities.length === 0">No activities have been configured ...</div>
+
+	<hr />
+
+	<div class="addActivitySection" ng-class="typeOfActivityToAdd">
+		<button class="addExistingActivityButton" ng-click="typeOfActivityToAdd = 'addExistingActivity'">Add Existing Activity</button>
+		<button class="addExternalActivityButton" ng-click="typeOfActivityToAdd = 'addExternalActivity'">Add External Activity</button>
+		<button class="addSelfReportedActivityButton" ng-click="typeOfActivityToAdd = 'addSelfReportedActivity'">Add Self-Reported Activity</button>
+
+		<div class="addActivityPanel" ng-switch on="typeOfActivityToAdd" ng-hide="typeOfActivityToAdd === '' || typeOfActivityToAdd === undefined">
+			<div ng-switch-when="addExistingActivity">
+				<ul class="activitiesAvailableToAdd row">
+					<li class="col-md-6" ng-repeat="activity in allActivities | filter:program.hasActivity">
+						<button ng-click="program.addActivity(activity)">{{activity.name}}</button>
+					</li>
+				</ul>
+			</div>
+			<div ng-switch-when="addSelfReportedActivity">
+				Self Reported
+			</div>
+			<div ng-switch-when="addExternalActivity">
+				External
+			</div>
+		</div>
+	</div>
+</div>

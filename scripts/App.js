@@ -3,6 +3,7 @@
 
 	window.rewardsAdmin = angular.module('rewardsAdmin', [
 		'ngRoute',
+		'ui.bootstrap',
 		'rewardsControllers'
 	]);
 

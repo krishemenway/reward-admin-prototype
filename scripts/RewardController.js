@@ -1,7 +1,7 @@
 (function(rewardsControllers) {
 	'use strict';
 
-	rewardsControllers.controller('RewardController',['$scope','$routeParams','RewardService','RewardTypeService','$location','ActivityService',function ($scope, $routeParams, RewardService, RewardTypeService, $location, ActivityService) {
+	rewardsControllers.controller('RewardController',['$scope','$routeParams','RewardService','RewardTypeService','$location','ActivityService', 'ProgramService', function ($scope, $routeParams, RewardService, RewardTypeService, $location, ActivityService, ProgramService) {
 		var rewardId = $routeParams.rewardId;
 
 		$scope.addActivity = function(activity) {
@@ -26,6 +26,7 @@
 
 		$scope.categories = ActivityService.findAllCategories();
 		$scope.reward = RewardService.findById(rewardId);
+		$scope.program = ProgramService.findProgram();
 	}]);
 
 })(window.rewardsControllers);
