@@ -37,11 +37,16 @@
 			</li>
 		</ul>
 
-		<ul class="rewardsToAdd row">
+		<button ng-click="isAddingReward = !isAddingReward">Add Required Reward</button>
+
+		<hr ng-if="isAddingReward" />
+		<ul ng-if="isAddingReward" class="rewardsToAdd row">
 			<li class="col-md-6" ng-repeat="reward in program.rewards | filter:reward.hasRequiredReward">
-				<button ng-click="addReward(reward)">{{reward.name}}</button>
+				<button ng-click="addRequiredReward(reward)">{{reward.name}}</button>
 			</li>
 		</ul>
+
+		<hr />
 
 		<h3>What activities are required to earn this reward?</h3>
 		<ul class="requiredActivities">
@@ -63,7 +68,7 @@
 			<div class="addActivityPanel" ng-switch on="typeOfActivityToAdd" ng-hide="typeOfActivityToAdd === '' || typeOfActivityToAdd === undefined">
 				<div ng-switch-when="addExistingActivity">
 					<ul class="activitiesAvailableToAdd row">
-						<li class="col-md-6" ng-repeat="activity in activities | filter:reward.hasRequiredActivity">
+						<li class="col-md-6" ng-repeat="activity in existingActivities | filter:reward.hasRequiredActivity">
 							<button ng-click="addActivity(activity)">{{activity.name}}</button>
 						</li>
 					</ul>

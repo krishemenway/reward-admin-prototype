@@ -43,36 +43,32 @@
 					props.requiredActivities.push(activity.id);
 				});
 
-				angular.forEach(exports.requiredRewards, function(reward) {
-					props.requiredRewards.push(reward.id);
-				});
-
 				return props;
-			}
+			};
 
 			exports.selectRewardType = function(newType) {
 				exports.rewardType = newType;
-			}
+			};
 
 			exports.toggleEnabled = function() {
 				exports.enabled = !exports.enabled;
-			}
+			};
 
 			exports.addActivity = function(activity) {
 				exports.requiredActivities.push(activity);
-			}
+			};
 
-			exports.addReward = function(reward) {
+			exports.addRequiredReward = function(reward) {
 				exports.requiredRewards.push(reward);
-			}
+			};
 
 			exports.hasRequiredReward = function(reward) {
 				return exports.requiredRewards.indexOf(reward) === -1;
-			}
+			};
 
 			exports.hasRequiredActivity = function(val) {
 				return exports.requiredActivities.indexOf(val) === -1;
-			}
+			};
 
 			return exports;
 		};

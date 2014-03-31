@@ -10,6 +10,12 @@
 			$scope.typeOfActivityToAdd = '';
 		};
 
+		$scope.addRequiredReward = function(reward) {
+			$scope.reward.addRequiredReward(reward);
+			$scope.save();
+			$scope.isAddingReward = false;
+		}
+
 		$scope.save = function() {
 			RewardService.saveReward($scope.reward);
 			$scope.showSavedMessage = true;
